@@ -1,0 +1,1 @@
+<input type="text" name="brand" id="brand" onkeyup="product_search_key(this,'brand');" value="<?php if(isset($_GET['brand'])){echo $_GET['brand'];}?>" class="form-control">
