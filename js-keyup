@@ -1,0 +1,32 @@
+function product_search_key(v,col){
+      var val=$(v).val();
+        //alert(val);
+      if(v != ''){
+        $(v).addClass('ac_loading');
+        $(v).autocomplete({
+          source: function( request, response ) {
+            $.ajax({
+              type:'POST',
+              dataType:'json',
+              url:li+'store_controller/product_search_keyup/',
+              data:{val:val,col:col},
+              success:function(data)
+              {
+                response(data);
+
+              }
+            });
+            $(v).removeClass('ac_loading');
+          },
+            select: function(e, ui) {
+
+            //alert(ui.item.value);
+            //getLedgerDisableTag();
+
+        }
+        });
+      }else if(val == ''){
+          $(v).removeClass('ac_loading');
+      }
+    }
+    
