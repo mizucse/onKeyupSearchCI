@@ -1,3 +1,79 @@
+ public function product_search(){
+    $ware=$this->session->userdata('wire');
+    $type=$this->session->userdata('type');
+    $admin = $this->session->userdata('admin');
+    $data['data'] = $this->common->getStatus();
+
+    if(empty($admin)){
+        redirect('admin');
+    }
+
+    $data['ware']=$this->setting->getWare('ware','name','asc',$ware);
+    $data["hList"]=$this->common->getProductHeadList();
+
+    $data['type']=0;
+    $trans_type_id=$this->common->getTransactionTypeId();
+    $data['transs_list']=$this->common->getAll('tbl_multi_data','type',$trans_type_id);
+    /*$data['store']=$this->account_model->getAllRAlter('store_list');*/
+    $this->load->view('admin/header',$data);
+
+
+    /* $product_name = $_GET['product_name'];
+    $warehouse = $_GET['warehouse'];
+    $head_list = $_GET['head_list'];
+    $reorder_level = $_GET['reorder_level'];
+    $brand = $_GET['brand'];
+    $model = $_GET['model'];
+    $size = $_GET['size'];
+    $uom = $_GET['uom'];
+    $product_type = $_GET['product_type'];
+    $rack_number = $_GET['rack_number'];
+    $product_life = $_GET['product_life'];*/
+
+    if(isset($_GET['product_code']) && !empty($_GET['product_code']))
+        $this->db->where('code',$_GET['product_code']);
+
+    if(isset($_GET['product_name']) && !empty($_GET['product_name']))
+        $this->db->where('name',$_GET['product_name']);
+
+    if(isset($_GET['warehouse']) && !empty($_GET['warehouse']))
+        $this->db->where('ware',$_GET['warehouse']);
+
+    if(isset($_GET['head_list']) && !empty($_GET['head_list']))
+        $this->db->where('head',$_GET['head_list']);
+
+    if(isset($_GET['reorder_level']) && !empty($_GET['reorder_level']))
+        $this->db->where('short_stock',$_GET['reorder_level']);
+
+    if(isset($_GET['brand']) && !empty($_GET['brand']))
+        $this->db->where('brand',$_GET['brand']);
+
+    if(isset($_GET['model']) && !empty($_GET['model']))
+        $this->db->where('modelget',$_GET['model']);
+
+    if(isset($_GET['size']) && !empty($_GET['size']))
+        $this->db->where('prsize',$_GET['size']);
+
+    if(isset($_GET['uom']) && !empty($_GET['uom']))
+        $this->db->where('unit',$_GET['uom']);
+
+    if(isset($_GET['product_type']) && !empty($_GET['product_type']))
+        $this->db->where('product_type',$_GET['product_type']);
+
+    if(isset($_GET['rack_number']) && !empty($_GET['rack_number']))
+        $this->db->where('rack_number',$_GET['rack_number']);
+
+    if(isset($_GET['product_life']) && !empty($_GET['product_life']))
+        $this->db->where('product_life',$_GET['product_life']);
+    if(isset($_GET) && !empty($_GET)){
+        $this->db->where('trace',0);
+        $data['product_list'] = $this->db->get('product_ledger')->result_array();
+    }
+
+    $this->load->view('store/product_search',$data);
+    $this->load->view('admin/footer');
+}
+
 public function product_search_keyup()
     {
       $this->load->database();
