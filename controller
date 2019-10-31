@@ -1,0 +1,25 @@
+public function product_search_keyup()
+    {
+      $this->load->database();
+      $column = $_POST['col'];
+      $value = $_POST['val'];
+
+        //echo print_r($column);
+
+      /*$ware="";
+      if(!empty($w) && $w != 13){
+          $ware="and (ware='".$w."' or ware='0' )";
+      }*/
+        //$sql="select * from product_ledger where ('".$column."' like '".$value."%')";
+
+        $this->db->like($column,$value);
+        $info = $this->db->get('product_ledger');
+        //$info=$this->db->query($sql);
+      $data=array();
+      foreach($info->result_array() as $val)
+      {
+          $hname=$this->common->getAllWithoutWare("ware","id",$val["ware"],"name");
+        array_push($data,$val[$column]);
+      }
+      echo json_encode($data);
+    }
