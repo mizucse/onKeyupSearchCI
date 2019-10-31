@@ -1,1 +1,36 @@
-<input type="text" name="brand" id="brand" onkeyup="product_search_key(this,'brand');" value="<?php if(isset($_GET['brand'])){echo $_GET['brand'];}?>" class="form-control">
+<div class="col-md-3">
+    <div class="form-group">
+      <label class="">Reorder Level</label>
+      <input type="text" name="brand" id="brand" onkeyup="product_search_key(this,'brand');" value="<?php if(isset($_GET['brand'])){echo $_GET['brand'];}?>" class="form-control">
+  </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+      <label class="">Reorder Level</label>
+    <input type="text" name="reorder_level" id="reorder_level" onkeyup="product_search_key(this,'short_stock');" value="<?php if(isset($_GET['reorder_level'])){echo $_GET['reorder_level'];}?>" class="form-control">
+  </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+      <label class="">Brand</label>
+    <input type="text" name="brand" id="brand" onkeyup="product_search_key(this,'brand');" value="<?php if(isset($_GET['brand'])){echo $_GET['brand'];}?>" class="form-control">
+  </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+      <label class="">Model</label>
+    <input type="text" name="model" id="model" onkeyup="product_search_key(this,'modelget');" value="<?php if(isset($_GET['model'])){echo $_GET['model'];}?>" class="form-control">
+  </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+      <label class="">Size</label>
+    <input type="text" name="size" id="size" onkeyup="product_search_key(this,'prsize');" value="<?php if(isset($_GET['size'])){echo $_GET['size'];}?>" class="form-control">
+  </div>
+</div>
+<div class="col-md-3">
+    <div class="form-group">
+      <label class="">UOM</label>
+    <input type="text" name="uom" id="uom" onkeyup="product_search_key(this,'unit');" value="<?php if(isset($_GET['uom'])){echo $_GET['uom'];}?>" class="form-control">
+  </div>
+</div>
