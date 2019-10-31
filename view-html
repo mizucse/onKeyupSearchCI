@@ -1,36 +1,94 @@
-<div class="col-md-3">
-    <div class="form-group">
-      <label class="">Reorder Level</label>
-      <input type="text" name="brand" id="brand" onkeyup="product_search_key(this,'brand');" value="<?php if(isset($_GET['brand'])){echo $_GET['brand'];}?>" class="form-control">
-  </div>
-</div>
-<div class="col-md-3">
-    <div class="form-group">
-      <label class="">Reorder Level</label>
-    <input type="text" name="reorder_level" id="reorder_level" onkeyup="product_search_key(this,'short_stock');" value="<?php if(isset($_GET['reorder_level'])){echo $_GET['reorder_level'];}?>" class="form-control">
-  </div>
-</div>
-<div class="col-md-3">
-    <div class="form-group">
-      <label class="">Brand</label>
-    <input type="text" name="brand" id="brand" onkeyup="product_search_key(this,'brand');" value="<?php if(isset($_GET['brand'])){echo $_GET['brand'];}?>" class="form-control">
-  </div>
-</div>
-<div class="col-md-3">
-    <div class="form-group">
-      <label class="">Model</label>
-    <input type="text" name="model" id="model" onkeyup="product_search_key(this,'modelget');" value="<?php if(isset($_GET['model'])){echo $_GET['model'];}?>" class="form-control">
-  </div>
-</div>
-<div class="col-md-3">
-    <div class="form-group">
-      <label class="">Size</label>
-    <input type="text" name="size" id="size" onkeyup="product_search_key(this,'prsize');" value="<?php if(isset($_GET['size'])){echo $_GET['size'];}?>" class="form-control">
-  </div>
-</div>
-<div class="col-md-3">
-    <div class="form-group">
-      <label class="">UOM</label>
-    <input type="text" name="uom" id="uom" onkeyup="product_search_key(this,'unit');" value="<?php if(isset($_GET['uom'])){echo $_GET['uom'];}?>" class="form-control">
-  </div>
-</div>
+<form class="bucket-form" method="get" action="<?php echo base_url(); ?>store_controller/product_search">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label class="">Product Code</label>
+            <input type="text" name="product_code" id="product_code" onkeyup="product_search_key(this,'code');" value="<?php if(isset($_GET['product_code'])){echo $_GET['product_code'];}?>" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label class="">Product Name</label>
+            <input type="text" name="product_name" id="product_name" onkeyup="product_search_key(this,'name');" value="<?php if(isset($_GET['product_name'])){echo $_GET['product_name'];}?>" class="form-control">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="">Warehouse</label>
+            <select class="selectpicker form-control" name="warehouse" data-live-search="true">
+                <option value="0"> </option>
+                <?php foreach($ware as $val):?>
+                    <option value="<?php echo $val['id'];?>" <?php if(isset($_GET['warehouse']) && $_GET['warehouse'] == $val['id']){echo "selected";}?>><?php echo $val['name'];?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="">Head List</label>
+            <select class="selectpicker form-control" name="head_list"data-live-search="true">
+                <?php foreach($hList as $h):?>
+                    <option value="<?php echo $h['id'] ?>" <?php if(isset($_GET['head_list']) && $h['id'] == $_GET['head_list']){echo 'selected';}?>>
+                        <?php echo $h['name'] ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label class="">Reorder Level</label>
+            <input type="text" name="reorder_level" id="reorder_level" onkeyup="product_search_key(this,'short_stock');" value="<?php if(isset($_GET['reorder_level'])){echo $_GET['reorder_level'];}?>" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label class="">Brand</label>
+            <input type="text" name="brand" id="brand" onkeyup="product_search_key(this,'brand');" value="<?php if(isset($_GET['brand'])){echo $_GET['brand'];}?>" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label class="">Model</label>
+            <input type="text" name="model" id="model" onkeyup="product_search_key(this,'modelget');" value="<?php if(isset($_GET['model'])){echo $_GET['model'];}?>" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label class="">Size</label>
+            <input type="text" name="size" id="size" onkeyup="product_search_key(this,'prsize');" value="<?php if(isset($_GET['size'])){echo $_GET['size'];}?>" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label class="">UOM</label>
+            <input type="text" name="uom" id="uom" onkeyup="product_search_key(this,'unit');" value="<?php if(isset($_GET['uom'])){echo $_GET['uom'];}?>" class="form-control">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="">Product Type</label>
+            <select class="form-control" name="product_type">
+                <option value="2" <?php if(isset($_GET['product_type']) && $_GET['product_type']=='2'){echo 'selected';}?>>Non Wrranty</option>
+                <option value="1" <?php if(isset($_GET['product_code']) && $_GET['product_type']=='1'){echo 'selected';}?>>Warranty</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label class="">RACK Number</label>
+            <input type="text" name="rack_number" id="rack_number" onkeyup="product_search_key(this,'rack_number');" value="<?php if(isset($_GET['rack_number'])){echo $_GET['rack_number'];}?>" class="form-control">
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="">Product Life</label>
+            <select class="form-control" name="product_life">
+                <option value="1" <?php if(isset($_GET['product_life']) && $_GET['product_life']=='1'){echo 'selected';}?>>Short Life</option>
+                <option value="2" <?php if(isset($_GET['product_life']) && $_GET['product_life']=='2'){echo 'selected';}?>>Long Life</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-12 text-center">
+        <input type="submit" class="btn btn-primary" value="Submit">
+    </div>
+</form>
